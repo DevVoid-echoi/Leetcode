@@ -40,4 +40,21 @@ class Solution(object):
         :type list2: Optional[ListNode]
         :rtype: Optional[ListNode]
         """
-        
+        dummy = ListNode(0) # Create a dummy node to be the anchor
+        tail = dummy # The pointer of the result list
+
+        while list1 and list2: # If both list1 and list2 exist
+            if list1.val <= list2.val: # The current value in list1 smaller than the current value in list2
+                tail.next = list1 # Add the current node in list1 to the result list
+                list1 = list1.next # Move the pointer of list1 to the next node
+            else:
+                tail.next = list2 # Add the current node in list2 to the result list
+                list2 = list2.next # Move the pointer of list2 to the next node
+            tail = tail.next # Move the point of the result list to the next node
+
+        if list1: # If only list 1 exist
+            tail.next = list1 # Add list1 to the result list
+        elif list2:
+            tail.next = list2 # Add list2 to the result list
+
+        return dummy.next # Return the result list

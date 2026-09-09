@@ -22,7 +22,7 @@ Explanation: Reads 01 from right to left. Therefore it is not a palindrome.
 
 Constraints:
 
--231 <= x <= 231 - 1"""
+-2^31 <= x <= 2^31 - 1"""
 
 class Solution(object):
     def isPalindrome(self, x):
@@ -30,8 +30,11 @@ class Solution(object):
         :type x: int
         :rtype: bool
         """
-        string = str(x)
-        for i in range (len(string)//2):
-            if string[i] != string [len(string)-1-i]:
-                return False
-        return True
+        if x < 0:
+            return False
+        num = x # Store x in num
+        rev = 0
+        while num!=0:
+            rev = rev*10 + num%10 # Add the last digit of x to rev
+            num = num//10 # Delete the last digit
+        return (rev==x)

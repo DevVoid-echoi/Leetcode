@@ -37,10 +37,10 @@ class Solution(object):
         :type target: int
         :rtype: List[int]
         """
-        preMap={}
-        for i, n in enumerate(nums):
+        preMap={} # Dictionary to save the differents (key: value)
+        for i, n in enumerate(nums): # enumerate = (index, value)
             diff = target - n
             if diff in preMap:
                 return[preMap[diff], i]
-            preMap[n]=i
+            preMap[n]=i # key = n, value = i
         return    
